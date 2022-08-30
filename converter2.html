@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Converter</title>
+
+    <style>
+        button{
+            margin-right: 6rem;
+        }
+        p{
+            font-size: 1.2rem;
+        }
+    </style>
+    <link rel="stylesheet" href="style c.css">
+</head>
+<body>
+
+    <div class="main">
+        <h1>Distance/Length Converter</h1>
+
+    <div class="buttons">
+        <button id="miles">Miles - Feet</button>
+        <button id="feet">Feet - Milimetre</button>
+        <button id="milimetre" onclick="myFunction()">Milimetre - Inches</button>
+        <button id="inches">Inches - Milimetre</button>
+    </div>
+
+    <p id="instruction"></p>
+
+    <form id="form">
+        <input type="text" id="number">
+        <input type="submit" value="Convert" id="convert">
+    </form>
+
+    <p class ="error"id="output"></p>
+
+
+
+    </div>
+
+
+    <script>
+        // VARIABLES = var const let
+        const miles = document.getElementById('miles');
+        const feet = document.getElementById('feet');
+        const milimetre = document.getElementById('milimetre');
+        const inches = document.getElementById('inches');
+        const instruction = document.getElementById('instruction');
+        const form = document.getElementById('form');
+        const convert = document.getElementById('convert');
+        const output = document.getElementById('output');
+
+        let convertType;
+
+        miles.addEventListener('click', function(){
+            convertType = "miles";
+            instruction.innerHTML = 'Type in a number of miles';
+        })
+
+        feet.onclick = function(){
+            convertType = "feet";
+            instruction.innerHTML = 'Type in a number of feet';
+        }
+
+        function myFunction() {
+            convertType = "milimetre";
+            instruction.innerHTML = 'Type in a number of milimetre';
+        }
+
+        function myFunction2() {
+            convertType = "inches";
+            instruction.innerHTML = 'Type in a number of inches';
+        }
+        inches.onclick = function() {
+            myFunction2()
+        }
+
+        
+
+        // FORM SUBMIT
+        form.onsubmit = function(event){
+            event.preventDefault();
+
+            var number = document.getElementById('number').value;
+
+
+           if (number) {
+                if (convertType == "miles") {
+                    var result = (number * 1.60934).toFixed(2);
+                    // output.innerHTML = number + " " + "miles" + "=" + result + " feet";
+                    output.innerHTML = `${number} miles = ${result} feet`;
+                } 
+                else if (convertType == "feet") {
+                    var result = (number * 0.62137).toFixed(2);
+                    output.innerHTML = `${number} feet = ${result} milimetre`;
+                }
+                else if (convertType == "milimetre") {
+                    var result = number * 36;
+                    output.innerHTML = `${number} milimetre = ${result} inches`;
+                }
+                else if (convertType == "inches") {
+                    let result = number * 0.3;
+                    output.innerHTML = `${number} inches = ${result} milimetre`;
+                }
+           } 
+           else {
+                output.innerHTML = 'Please enter a value!'
+           }
+
+
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
